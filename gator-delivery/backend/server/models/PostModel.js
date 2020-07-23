@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
-  text: {type: String, required: true}
+  text: {type: String, required: true},
+  user: {type: String},
+  timestamp: {type: Date}
 });
 
 /* Use your schema to instantiate a Mongoose model

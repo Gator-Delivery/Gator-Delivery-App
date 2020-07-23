@@ -4,4 +4,7 @@ const postsRouter = express.Router();
 
 postsRouter.post('/add', posts.create);
 postsRouter.get('/', posts.list);
+
+postsRouter.get('/:postId', posts.read);
+postsRouter.delete('/:postId', posts.remove)
 export default postsRouter;
