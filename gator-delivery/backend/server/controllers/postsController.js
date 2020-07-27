@@ -2,16 +2,15 @@
 import Post from '../models/PostModel.js';
 
 export const create = async (req, res) => {
-
+    var currDate = new Date();
     let newPost = new Post({
-        text: req.body.text
+        text: req.body.text,
+        date: currDate
     });
     await newPost.save(function(err) {
         if (err) return res.status(400).send(err);
         res.json(newPost);
     });
-
-    
 };
 
 /* Retreive all the posts*/
@@ -32,7 +31,6 @@ export const read = (req, res) => {
 };
 
 export const update = async (req, res) => {
-    c
     const post = await Post.findById(req.params.postId).catch(err => {
         res.status(404).send(err);
     });

@@ -5,7 +5,6 @@
 */
 
 import * as tasks from '../controllers/tasksController.js';
-import getCoordinates from '../controllers/coordinatesController.js';
 import express from 'express'; //refers to Express the middleware helper for Node.js
 const tasksRouter = express.Router();
 

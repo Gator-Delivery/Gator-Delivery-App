@@ -19,14 +19,15 @@ const Board = (props) => {
 
     const PostList = () => {
         return postList.map(currPost => {
-            return <Post post={currPost} key={currPost._id}/>;
+            return <Post post={currPost}/>;
         });
     };
 
     const createPost = (e) => {
         e.preventDefault();
         let newPost = {
-            text: post
+            text: post,
+            date: new Date()
         };
         axios.post('http://localhost:5000/posts/add', newPost);  
         
