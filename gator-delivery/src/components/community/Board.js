@@ -19,7 +19,7 @@ const Board = (props) => {
 
     const PostList = () => {
         return postList.map(currPost => {
-            return <Post post={currPost}/>;
+            return <Post post={currPost} key={currPost.date, -1}/>;
         });
     };
 
@@ -30,6 +30,7 @@ const Board = (props) => {
             date: new Date()
         };
         axios.post('http://localhost:5000/posts/add', newPost);  
+        axios.create('http://localhost:5000/posts/:postId');
         
         window.location = '/community';
         setPost('');

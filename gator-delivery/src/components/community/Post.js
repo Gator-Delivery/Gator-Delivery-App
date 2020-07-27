@@ -28,7 +28,7 @@ const Post = (props) => {
 
 
     }
-    
+
     return (
         <div className="card post-editor">
             <div className="card-header">
@@ -38,7 +38,7 @@ const Post = (props) => {
             <div className="card-body">
                 <h5 className="card-title">{props.post.text}</h5>
                 <p> </p>
-                <a href="#" className="btn btn-link">See More {onClick=open()}</a>
+                <a href="#" className="btn btn-link" >See More </a>
             </div>
         </div>
     );
