@@ -1,5 +1,5 @@
 /* Dependencies */
-import Post from '../models/PostModel.js';
+import Post from "../models/PostModel.js";
 
 export const create = async (req, res) => {
     var currDate = new Date();
@@ -15,10 +15,10 @@ export const create = async (req, res) => {
 
 /* Retreive all the posts*/
 export const list = (req, res) => {
-    Post.find({}).exec(function(err,post) {
-        if (err) return res.status(400).send(err);
-        res.json(post);
-    });
+  Post.find({}).exec(function (err, post) {
+    if (err) return res.status(400).send(err);
+    res.json(post);
+  });
 };
 
 export const read = (req, res) => {
