@@ -10,12 +10,13 @@ import userRouter from "./routes/userRouter.js";
 import firebaseAdmin from "firebase-admin";
 import {checkAuth} from './authentication/authentication.js';
 import cors from "cors";
-
+import reviewsRouter from "./routes/reviewsRouter.js";
 
 firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(serviceAccountKey),
   databaseURL: "https://gator-delivery.firebaseio.com"
 });
+
 
 //connect to database
 mongoose
@@ -69,6 +70,8 @@ app.use("/tasks", tasksRouter);
 app.use("/posts", postsRouter);
 
 app.use("/users", userRouter);
+
+app.use("/reviews", reviewsRouter);
 /* The next three middleware are important to the API that we are building */
 
 /* Request Handler for route /api/listings

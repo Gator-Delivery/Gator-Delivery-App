@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import {getPost, formatDate} from './helper';
+import { formatDate } from './helper';
 import { Link, useParams } from 'react-router-dom';
-import { defaultProps } from 'recompose';
-import firebase from "firebase/app";
 import { AuthContext } from "../session/withAuthentication";
 
 const COMMUNITY_ID = "5f1a297a5e28d64e6c283ea0";
