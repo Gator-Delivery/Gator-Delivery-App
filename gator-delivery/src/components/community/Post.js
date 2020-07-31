@@ -1,44 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
+import { Link } from 'react-router-dom';
+
+import {getPost, formatDate} from './helper';
 
 const Post = (props) => {
+    const [selectedID, setSelectedID] = useState('');
+    const [post, setPost] = useState(''); 
     
-    const currDate = new Date(props.post.date);
-   
-    const displayDate = () => {
-        var d = "";
-        var year = currDate.getFullYear();
-        var day = currDate.getDate();
-        var month = currDate.getMonth() + 1;
-        var hour = currDate.getHours();
-        var min = currDate.getMinutes();
-        var ampm = "";
+    // useEffect(() => {
+    //     getPost(props.post._id)
 
-        if (hour > 12) {
-            hour -= 12;
-            ampm += "PM";
-        } else {
-            ampm += "AM";
-        }
+    // }
 
-        d = d + month + "/" + day + "/" + year + "    " + hour + ":" + min + " " + ampm;
-        return d;
-    }
-
-    const open = () => {
-
-
-    }
 
     return (
         <div className="card post-editor">
             <div className="card-header">
-                {displayDate()}
-               
+                {formatDate(new Date(props.post.date))}
+            
+  
             </div>
             <div className="card-body">
                 <h5 className="card-title">{props.post.text}</h5>
-                <p> </p>
-                <a href="#" className="btn btn-link" >See More </a>
+                <Link to={
+                    {
+                        pathname: '/post/' + props.post._id,
+                        id: props.post._id
+                    }
+                } className="nav-link">
+                {/* <button type="button" className="btn btn-link" onClick={getPost()}>View post</button> */}
+                </Link>
+                
             </div>
         </div>
     );

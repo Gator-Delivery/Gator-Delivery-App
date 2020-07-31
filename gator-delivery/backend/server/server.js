@@ -3,10 +3,19 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import config from "./config/config.js";
+import config,{ serviceAccountKey } from "./config/config.js";
 import tasksRouter from "./routes/tasksRouter.js";
 import postsRouter from "./routes/postsRouter.js";
 import userRouter from "./routes/userRouter.js";
+import firebaseAdmin from "firebase-admin";
+import {checkAuth} from './authentication/authentication.js';
+import cors from "cors";
+
+
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(serviceAccountKey),
+  databaseURL: "https://gator-delivery.firebaseio.com"
+});
 
 //connect to database
 mongoose
@@ -22,9 +31,12 @@ mongoose
 //initialize app
 const app = express();
 
+
+
 //enable request logging for development debugging
 app.use(morgan("dev"));
 
+app.use(cors());
 //body parsing middleware
 app.use(
   bodyParser.urlencoded({
@@ -74,9 +86,9 @@ app.use("/users", userRouter);
 
 /* Request handler for all other routes
    Sends a response (res) to go to the homepage for all routes not specified */
-app.all("/*", (req, res) => {
-  res.sendFile(path.resolve("client/index.html"));
-});
+// app.all("/*", (req, res) => {
+//   res.sendFile(path.resolve("client/index.html"));
+// });
 
 app.listen(config.port, () =>
   console.log(`App now listening on port ${config.port}`)
