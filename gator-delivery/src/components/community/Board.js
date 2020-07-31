@@ -9,8 +9,6 @@ const COMMUNITY_ID = "5f1a297a5e28d64e6c283ea0";
 const Board = (props) => {
     const [post, setPost] = useState('');
     const [postList, setPostList] = useState([]);
-    const [user, setUser] = useState('');
-    const [selectedID, setSelectedID] = useState('');
     const [mainPost, setMainPost] = useState('');
     const { currentUser, axiosAuth } = useContext(AuthContext);
   
@@ -21,7 +19,9 @@ const Board = (props) => {
         console.log(currentUser);
         axiosAuth("get", "/posts/"+props.id, {}, response => {
             let asc_post = response.data;
-            let des_post = asc_post.reverse(); // Show newest posts first
+            let des_post = asc_post.reverse(); 
+            // Show newest posts first
+            setPostList([]);
             setPostList(des_post); 
         }, (err) => {});
 
@@ -113,9 +113,7 @@ const Board = (props) => {
         };
 
         const deletePost = () => {
-            
             axiosAuth("delete", "/posts/"+props.post._id, {}, (res) => {setRemoved(true)}, (err) => {});
-
         };
 
         if (removed) { return ""; }
@@ -180,11 +178,6 @@ const Board = (props) => {
         );
     }
 export default Board;
-// export const CommunityBoard = () => {
-//     return (
-//         <Board id={COMMUNITY_ID}/>
-//     )
-// };
 
 export const PostBoard = (props) => {
     let {id} = useParams();

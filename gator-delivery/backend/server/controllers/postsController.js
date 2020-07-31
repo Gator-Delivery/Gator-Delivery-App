@@ -62,7 +62,7 @@ export const update = (req, res) => {
 
 /* Delete a post */
 export const remove = (req, res) => { 
-    Post.findById(req.body._id).then(post => {
+    Post.findById(req.params.postId).then(post => {
         if (req.user.uid != post.user) {
             return res.status(403).send("you cannot remove this post");
         }

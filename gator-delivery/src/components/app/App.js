@@ -19,7 +19,7 @@ import Navbar from "../navbar/Navbar";
 import CreateTask from "../createtask/CreateTask";
 
 import {CommunityBoard as CommunityBoard, PostBoard as PostBoard} from "../community/Board";
-
+import Board from "../community/Board";
 import faq from "../faq/faq";
 //npm install react-calendar or yarn add react-calendar
 import Calendar from "../calendar/Calendar";
