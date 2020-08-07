@@ -34,8 +34,10 @@ const NavAuth = () => {
             <div className="dropdown">
               <button className="dropbtn">Social</button>
               <div className="dropdown-content">
+
                 <a href="/vreviews">Volunteer Reviews</a>
-                <a href="/community">Community Board</a>
+                <a href="/post/community">Community Board</a>
+
                 <a href="/faq">FAQ</a>
               </div>
             </div>

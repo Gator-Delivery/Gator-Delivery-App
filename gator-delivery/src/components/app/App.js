@@ -17,13 +17,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../navbar/Navbar";
 // import TaskList from "../tasklist/TaskList";
 import CreateTask from "../createtask/CreateTask";
+
+import {CommunityBoard as CommunityBoard, PostBoard as PostBoard} from "../community/Board";
 import Board from "../community/Board";
-import RB from "../reviews/Rored";
 import faq from "../faq/faq";
 //npm install react-calendar or yarn add react-calendar
 import Calendar from "../calendar/Calendar";
 import ViewJob from "../viewjob/ViewJob";
 import path from "path";
+
 import Rored from "../reviews/Rored";
 
 const App = () => {
@@ -36,6 +38,7 @@ const App = () => {
 
             <div className="body">
               <Route path={ROUTES.CREATE} component={CreateTask} />
+              {/* <Route path={ROUTES.COMMUNITY} component={CommunityBoard} /> */}
               <Route path={ROUTES.COMMUNITY} component={Board} />
               <Route path={ROUTES.REVIEWS} component ={Rored} />
               <Route path={ROUTES.CALENDAR} component={Calendar} />
@@ -48,6 +51,7 @@ const App = () => {
               <Route path={ROUTES.ACCOUNT} component={AccountPage} />
               <Route path={ROUTES.PROFILE_SETTINGS} component={AccountPage} />
               <Route path={path.join("/job", ":id?")} component={ViewJob} />
+              <Route path={path.join("/post", ":id?")} component={PostBoard} />
               {/* <Route path={ROUTES.ADMIN} component={AdminPage} />   */}
             </div>
           </div>

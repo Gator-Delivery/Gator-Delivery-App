@@ -4,8 +4,8 @@
 
 */
 
-import * as tasks from "../controllers/tasksController.js";
-import express from "express"; //refers to Express the middleware helper for Node.js
+import * as tasks from '../controllers/tasksController.js';
+import express from 'express'; //refers to Express the middleware helper for Node.js
 const tasksRouter = express.Router();
 
 tasksRouter.post("/add", tasks.create);
