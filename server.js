@@ -1,3 +1,4 @@
+
 import path from 'path';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -6,6 +7,7 @@ import bodyParser from 'body-parser';
 import tasksRouter from './routes/tasksRouter.js';
 import postsRouter from './routes/postsRouter.js';
 import userRouter from './routes/userRouter.js';
+import reviewsRouter from './routes/reviewsRouter.js';
 
 const PORT = process.env.PORT || 5000;
 const URI = process.env.DB_URI || "mongodb+srv://user:test@cen3031-summer-2020-jqavu.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -57,6 +59,8 @@ app.use('/posts', postsRouter);
 
 app.use('/users', userRouter);
 
+app.use('/reviews', reviewsRouter);
+
 /*app.all('/*', (req, res) => {
    res.sendFile(path.resolve('client/index.html'));
 });*/
@@ -69,6 +73,7 @@ if (process.env.NODE_ENV === 'production') {
    app.get('/*', (req,res) => {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
    });
+   
 }
 
 app.listen(PORT, () => console.log(`App now listening on port ${PORT}`));

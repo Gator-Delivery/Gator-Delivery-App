@@ -9,6 +9,7 @@ import {Button} from "react-bootstrap";
 import "../index.css";
 import { HelpOutline } from "@material-ui/icons";
 import SignIn from "../sign-in";
+import SignUp from "../sign-up";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 const Navbar1 = () => {
@@ -17,7 +18,7 @@ const Navbar1 = () => {
     // <div className="header">
     //   {currentUser ? <NavAuth /> : <NavUnAuth />}
     // </div>
-    <Navbar collapseOnSelect expand="lg" bg="primary" fixed="top" className="navbar-dark nav-fix">
+    <Navbar collapseOnSelect expand="lg" bg="primary" fixed="top" className="navbar-dark nav-fix" style={{height: "5.5vh"}}>
       <Link to={currentUser ? ROUTES.HOME : ROUTES.LANDING}>
         <Navbar.Brand>Home Order</Navbar.Brand>
       </Link>
@@ -25,11 +26,13 @@ const Navbar1 = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Link to="/create" className="nav-link nav-text">
+          {currentUser &&
+          <>
+            <Link to="/create" className="nav-link nav-text">
             {/* <Nav.Link className="nav-text">Create Job</Nav.Link> */}
-            Create Job
-          </Link>
-          <NavDropdown title="Social" id="collasible-nav-dropdown">
+              Create Job
+            </Link>
+            <NavDropdown title="Social" id="collasible-nav-dropdown">
             <NavDropdown.Item tag={Link} /*href={ROUTES.REVIEWS}*/>
               <Link to={ROUTES.REVIEWS} className="drp-text">
                 Volunteer Reviews
@@ -49,6 +52,8 @@ const Navbar1 = () => {
           <Link to={ROUTES.CALENDAR} className="nav-text nav-link">
             Calendar
           </Link>
+          </>}
+          
           {/* <Nav.Link tag={Link} href={ROUTES.CALENDAR} className="nav-text">Calendar</Nav.Link> */}
         </Nav>
         {currentUser ? <NavAuth /> : <NavUnAuth />}
@@ -70,6 +75,9 @@ const NavAuth = (props) => {
     } 
   };
   return (
+    <>
+    
+    
     <Nav>
       <Navbar.Text className="user-text">
         Hello, {currentUser.displayName}!
@@ -81,14 +89,14 @@ const NavAuth = (props) => {
         />
         } id="collasible-nav-dropdown" alignRight>
         
-        <NavDropdown.Item>
+        {/* <NavDropdown.Item>
           <Link to={ROUTES.ACCOUNT} className="drp-text">
             General Settings
           </Link>
-        </NavDropdown.Item>
+        </NavDropdown.Item> */}
         <NavDropdown.Item>
-          <Link to={ROUTES.PROFILE_SETTINGS} className="drp-text">
-            Profile Settings
+          <Link to={ROUTES.ACCOUNT} className="drp-text">
+            Account Settings
           </Link>
         </NavDropdown.Item>
         <NavDropdown.Divider />
@@ -97,16 +105,32 @@ const NavAuth = (props) => {
         </NavDropdown.Item>
       </NavDropdown>
     </Nav>
+    </>
   );
   
 }
 
-const NavUnAuth = (props) => (
+const NavUnAuth = (props) => {
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const CloseSignUp = () => { // Closes the Sign Up modal and shows the sign in modal 
+    setShowSignUp(false);
+    setShowModal(true);
+  }
+  
+  const CloseSignIn = () => { // Closes the Sign In modal and shows the sign up modal
+    setShowModal(false);
+    setShowSignUp(true);
+  }
+  return (
     <Nav>
-      <Nav.Link href={ROUTES.SIGN_UP} className="signUp-text">Sign Up</Nav.Link>
+      {/* <Nav.Link href={ROUTES.SIGN_UP} className="signUp-text">Sign Up</Nav.Link> */}
       {/* <Nav.Link href={ROUTES.SIGN_IN} className="signIn-text">Sign In</Nav.Link> */}
-      <SignIn />
+      <SignIn showSignUp={showSignUp} showModal={showModal} setShowSignUp={setShowSignUp} setShowModal={setShowModal} CloseSignIn={CloseSignIn}/>
+      <SignUp showSignUp={showSignUp} showModal={showModal} setShowSignUp={setShowSignUp} setShowModal={setShowModal} CloseSignUp={CloseSignUp}/>
     </Nav>
-);
+  );
+}
 
 export default Navbar1;
