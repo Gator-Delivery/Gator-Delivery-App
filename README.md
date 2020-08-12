@@ -70,4 +70,14 @@ HomeOrder uses the following APIs:
   *  Store user account information
 * Axios
   * Make CRUD requests to information database
+  
+### UI Templates and Icons Resources
+  
+HomeOrder used the following resources to enhance the UI and design:
+  
+* Material Kit React
+  * Used provided template for the home page
+  * Download Link: https://www.creative-tim.com/product/material-kit-react
+* Material UI
+  * Used for modals and icons
 
